@@ -23,8 +23,22 @@ const SearchPage = (props: Props) => {
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string | null>(null);
 
+  const addToData = () => {
+    setSearchResult((prev) => [
+      ...prev,
+      {
+        currency: "INR",
+        exchangeShortName: "NSF",
+        name: "Indian Rupee",
+        stockExchange: "NIFTY",
+        symbol: "$",
+      }
+    ]);
+  };
+
   useEffect(() => {
     getPortfolio();
+    addToData();
   }, []);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
